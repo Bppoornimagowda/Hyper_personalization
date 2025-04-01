@@ -1,0 +1,104 @@
+.camera-container {
+    position: relative;
+    width: 100vw;  /* Full screen width */
+    height: 100vh; /* Full screen height */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  
+  /* Camera On Indicator */
+  .camera-indicator {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+  
+  .indicator-dot {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+  
+  /* Frame Box */
+  .frame-box {
+    position: relative;
+    width: 320px;
+    height: 550px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    overflow: hidden;
+  }
+  
+  /* Person Image */
+  .person-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    opacity: 1;
+  }
+  
+  /* Overlay Text */
+  .overlay-text {
+    position: absolute;
+    text-align: center;
+    color: white;
+  }
+  
+  .get-ready-text {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .countdown {
+    font-size: 50px;
+    font-weight: bold;
+  }
+  
+  /* Bottom Section */
+  .bottom-section {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .instruction-text {
+    color: white;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  /* Continue Button */
+  .continue-button {
+    padding: 14px 28px;
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .continue-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }

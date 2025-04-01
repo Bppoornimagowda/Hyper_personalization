@@ -1,0 +1,142 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../../src/images/Frame1.jpeg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Dark overlay for better visibility */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Centered content box */
+.content-box {
+    position: relative;
+    width: 100%;
+    max-width: 280px; /* Reduced width */
+    background: rgba(255, 255, 255, 0.15); /* Added semi-transparent background */
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+/* Icon styling */
+.icon-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.icon {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+/* Title and text styles */
+.title {
+    font-size: 20px; /* Reduced font size */
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.description {
+    font-size: 13px; /* Reduced font size */
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Highlighted links */
+.highlight {
+    color: #FFE600;
+    text-decoration: none;
+}
+
+.highlight:hover {
+    text-decoration: underline;
+}
+
+/* Checkbox section */
+.checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+}
+
+.checkbox-label {
+    font-size: 12px; /* Reduced font size */
+    color: white;
+    line-height: 1.4;
+}
+
+/* Continue button styles */
+.continue-button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    font-size: 14px; /* Reduced font size */
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.continue-button:hover:not(.disabled) {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.continue-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Added responsive styles */
+@media screen and (max-width: 768px) {
+    .content-box {
+        max-width: 260px;
+        padding: 1.25rem;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .description {
+        font-size: 12px;
+    }
+
+    .checkbox-label {
+        font-size: 11px;
+    }
+
+    .continue-button {
+        font-size: 13px;
+        padding: 10px;
+    }
+}

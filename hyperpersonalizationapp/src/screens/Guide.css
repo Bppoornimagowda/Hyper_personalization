@@ -1,0 +1,57 @@
+.scan-guide-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background:url("../../src/images/Frame1.jpeg");
+    
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  .image-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 10px;
+  }
+  
+  .scan-image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .description {
+    font-size: 14px;
+    margin: 16px;
+    max-width: 80%;
+  }
+  
+  .continue-button {
+    margin-top: 12px;
+    padding: 10px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #121212;
+    cursor: pointer;
+  }
+  
+  .continue-button:hover {
+    background-color: #dddddd;
+  }

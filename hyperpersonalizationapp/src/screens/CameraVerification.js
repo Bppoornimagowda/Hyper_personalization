@@ -1,50 +1,76 @@
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./CameraVerification.css";
-import personImage from "../../src/images/straightpose.png";  // Correct Path for Image
-import backgroundImage from "../../src/images/Frame1.jpeg"; // Background Image
+import "./CameraVerification.css"; // Import the CSS file
+import logo from '../../src/images/logo.png';
+import personImage from '../../src/images/straightpose.png';
 
-export default function CameraScreen() {
-  const [count, setCount] = useState(10);
+const CameraVerification = () => {
+  const [countdown, setCountdown] = useState(10);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
-    if (count > 0) {
-      const timer = setTimeout(() => setCount(count - 1), 1000);
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     }
-  }, [count]);
-  
+  }, [countdown]);
+
+  const handleBack = () => {
+    navigate(-1); // Go back to previous page
+  };
+
+  const handleContinue = () => {
+    navigate('/SidePose'); // Navigate to the side pose page
+  };
 
   return (
-    <div
-      className="camera-container"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      {/* Camera On Indicator */}
-      <div className="camera-indicator">
-        <span className="indicator-dot"></span> Camera On
-      </div>
-
-      {/* Frame Section */}
-      <div className="frame-box">
-        <img src={personImage} alt="Person" className="person-image" />
-        <div className="overlay-text">
-          <p className="get-ready-text">Get Ready</p>
-          <p className="countdown">{count}</p>
+    <div className="camera-screen">
+      {/* Header */}
+      <header className="header">
+        <div className="logo-section">
+          <img src={logo} alt="Areta360" className="logo" />
         </div>
-      </div>
+        <div className="header-right">
+          <button className="help-button">
+            <span className="help-icon">ⓘ</span>
+            Help
+          </button>
+          <div className="language-selector">
+            <span className="globe-icon">🌐</span>
+            UK English
+          </div>
+          <div className="camera-status">
+            <span className="camera-dot"></span>
+            Camera On
+          </div>
+        </div>
+      </header>
 
-      {/* Bottom Section */}
-      <div className="bottom-section">
-        <p className="instruction-text">
-          Hold or place your phone until you fit into this frame
-        </p>
-        <button className="continue-button" 
-        onClick={() => navigate("/SidePose")} // Navigate when clicked
-      ></button>
-        Continue
+      {/* Main Content */}
+      <div className="main-content">
+        <button className="back-button" onClick={handleBack}>
+          ← Back
+        </button>
+
+        <div className="frame-container">
+          <div className="frame-box">
+            <img src={personImage} alt="Person" className="person-image" />
+            <div className="countdown-overlay">
+              <h2 className="get-ready-text">Get Ready</h2>
+              <div className="countdown-number">{countdown}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="instruction-box">
+          <p className="instruction-text">
+            Hold or place your phone until you fit into this frame
+          </p>
+          <button className="continue-button" onClick={handleContinue}>Continue</button>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default CameraVerification;

@@ -1,104 +1,207 @@
-.camera-container {
-    position: relative;
-    width: 100vw;  /* Full screen width */
-    height: 100vh; /* Full screen height */
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
-  }
-  
-  /* Camera On Indicator */
-  .camera-indicator {
+/* Camera Screen */
+.camera-screen {
+  min-height: 100vh;
+  background: url('../../src/images/Frame1.jpeg') center/cover no-repeat;
+  color: white;
+  position: relative;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  &::before {
+    content: '';
     position: absolute;
-    top: 20px;
-    right: 20px;
-    color: white;
-    font-size: 16px;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(10px);
+    z-index: -1;
   }
-  
-  .indicator-dot {
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    border-radius: 50%;
-    margin-right: 6px;
-  }
-  
-  /* Frame Box */
-  .frame-box {
-    position: relative;
-    width: 320px;
-    height: 550px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
-    overflow: hidden;
-  }
-  
-  /* Person Image */
-  .person-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-    opacity: 1;
-  }
-  
-  /* Overlay Text */
-  .overlay-text {
-    position: absolute;
-    text-align: center;
-    color: white;
-  }
-  
-  .get-ready-text {
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .countdown {
-    font-size: 50px;
-    font-weight: bold;
-  }
-  
-  /* Bottom Section */
-  .bottom-section {
-    position: absolute;
-    bottom: 50px;
-    text-align: center;
-    width: 100%;
-  }
-  
-  .instruction-text {
-    color: white;
-    font-size: 16px;
-    margin-bottom: 15px;
-  }
-  
-  /* Continue Button */
-  .continue-button {
-    padding: 14px 28px;
-    border: 2px solid white;
-    color: white;
-    background: transparent;
-    border-radius: 12px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .continue-button:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  height: 40px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.help-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.info-icon {
+  opacity: 0.7;
+}
+
+.language-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.globe-icon {
+  opacity: 0.7;
+}
+
+.camera-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 16px;
+}
+
+.camera-dot {
+  width: 8px;
+  height: 8px;
+  background: #ff0000;
+  border-radius: 50%;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  flex: 1;
+  padding: 0 30px;
+  padding-top: 20px;
+}
+
+/* Frame Container */
+.frame-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: calc(100vh - 150px);
+  margin-top: 20px;
+}
+
+/* Frame Box */
+.frame-box {
+  width: 380px;
+  height: calc(100vh - 150px);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.person-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 25px;
+}
+
+/* Countdown Overlay */
+.countdown-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+}
+
+.get-ready-text {
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.countdown-number {
+  font-size: 96px;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Instruction Box */
+.instruction-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 35px;
+  border-radius: 20px;
+  width: 340px;
+  backdrop-filter: blur(10px);
+  align-self: flex-start;
+  margin-top: calc(20vh);
+}
+
+.instruction-text {
+  font-size: 24px;
+  line-height: 1.4;
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.continue-button {
+  width: 100%;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.continue-button:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Back Button */
+.back-button {
+  position: absolute;
+  left: 30px;
+  top: 100px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}

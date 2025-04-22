@@ -5,6 +5,7 @@ import Guide from "../src/screens/Guide";
 import CameraVerification from "../src/screens/CameraVerification";
 import Complete from "../src/screens/Complete";
 import SidePose from "../src/screens/SidePose";
+import "./App.css";
 
 function App() {
   return (

@@ -1,112 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './CameraVerification.css';
-import logo from '../src/images/logo.png';
-import personImage from '../src/images/straightpose.png';
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./CameraVerification.css";
+import logoImage from "../../src/images/areta360-logo.png";
+import personImage from "../../src/images/straightpose.png";
 
-const CameraVerification = () => {
+export default function CameraVerification() {
   const [count, setCount] = useState(10);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCount((prevCount) => {
-        if (prevCount <= 1) {
-          clearInterval(timer);
-          return 0;
-        }
-        return prevCount - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const handleBack = () => {
-    navigate(-1);
-  };
-
-  const handleContinue = () => {
-    navigate('/next-page'); // Replace with your next route
-  };
-
-  const handleHelp = () => {
-    // Add help functionality
-    console.log('Help clicked');
-  };
-
-  const handleLanguageChange = () => {
-    // Add language change functionality
-    console.log('Language change clicked');
-  };
+    if (count > 0) {
+      const timer = setTimeout(() => setCount(count - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [count]);
 
   return (
     <div className="camera-screen">
-      {/* Header Section */}
-      <header className="header">
+      {/* Header */}
+      <div className="header">
         <div className="logo-container">
-          <img src={logo} alt="Areta360" className="logo" />
+          <img src={logoImage} alt="Areta360" className="logo" />
         </div>
-
-        <div className="header-right">
-          <button className="help-button" onClick={handleHelp}>
+        <div className="header-controls">
+          <button className="control-btn">
             <span className="info-icon">ⓘ</span>
-            <span>Help</span>
+            Help
           </button>
-
-          <div className="language-selector" onClick={handleLanguageChange}>
+          <button className="control-btn">
             <span className="globe-icon">🌐</span>
-            <span>UK English</span>
-            <span className="dropdown-icon">▼</span>
-          </div>
-
+            UK English
+            <span className="arrow-icon">▼</span>
+          </button>
           <div className="camera-status">
-            <div className="camera-dot"></div>
-            <span>Camera On</span>
+            <span className="camera-dot"></span>
+            Camera On
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Back Button */}
-      <button className="back-button" onClick={handleBack}>
-        <span>←</span>
-        <span>Back</span>
+      <button className="back-btn" onClick={() => navigate(-1)}>
+        ← Back
       </button>
 
       {/* Main Content */}
-      <main className="main-content">
-        {/* Frame Box */}
-        <div className="frame-box">
-          <div className="image-container">
-            <img 
-              src={personImage} 
-              alt="Reference Pose" 
-              className="person-image"
-            />
-          </div>
-
-          {/* Countdown Overlay */}
-          <div className="countdown-overlay">
-            <h2 className="get-ready-text">Get Ready</h2>
-            <div className="countdown-number">{count}</div>
+      <div className="main-content">
+        <div className="frame-container">
+          <div className="model-frame">
+            <img src={personImage} alt="Reference pose" className="model-image" />
+            <div className="text-overlay">
+              <h1 className="get-ready">Get Ready</h1>
+              <div className="countdown">{count}</div>
+            </div>
           </div>
         </div>
 
-        {/* Instructions */}
+        {/* Instruction Box */}
         <div className="instruction-box">
-          <p className="instruction-text">
-            Hold or place your phone until you fit into this frame
-          </p>
+          <p>Hold or place your phone until you fit into this frame</p>
           <button 
-            className="continue-button"
-            onClick={handleContinue}
+            className="continue-btn" 
+            onClick={() => navigate("/SidePose")}
           >
             Continue
           </button>
         </div>
-      </main>
+      </div>
     </div>
   );
-};
-
-export default CameraVerification; 
+} 

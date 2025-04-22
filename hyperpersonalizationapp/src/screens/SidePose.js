@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/common.css";
 import "./SidePose.css";
-import logo from '../../src/images/logo.png';
-import personImage from '../../src/images/sidepose.png';
+import logo from '../assests/images/logo.png';
+import personImage from '../assests/images/sidepose.png';
 
 const SidePose = () => {
-  const [countdown, setCountdown] = useState(6);
+  const [countdown, setCountdown] = useState(10);
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('UK English');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,58 +18,74 @@ const SidePose = () => {
     }
   }, [countdown]);
 
-  const handleBack = () => {
-    navigate(-1); // Go back to previous page
+  const toggleLanguageDropdown = () => {
+    setShowLanguageDropdown(!showLanguageDropdown);
   };
 
-  const handleContinue = () => {
-    navigate('/Complete'); // Navigate to the complete page
+  const selectLanguage = (language) => {
+    setSelectedLanguage(language);
+    setShowLanguageDropdown(false);
   };
 
   return (
-    <div className="camera-screen">
+    <div className="page-container">
       {/* Header */}
-      <header className="header">
+      <div className="header">
         <div className="logo-section">
           <img src={logo} alt="Areta360" className="logo" />
         </div>
-        <div className="header-right">
-          <button className="help-button">
-            <span className="help-icon">ⓘ</span>
+        <div className="header-controls">
+          <button className="control-button">
+            <span className="info-icon">ⓘ</span>
             Help
           </button>
           <div className="language-selector">
-            <span className="globe-icon">🌐</span>
-            UK English
+            <button 
+              className="control-button"
+              onClick={toggleLanguageDropdown}
+            >
+              <span className="globe-icon">🌐</span>
+              {selectedLanguage}
+              <span className="arrow-icon">▼</span>
+            </button>
+            {showLanguageDropdown && (
+              <div className="language-dropdown">
+                <button onClick={() => selectLanguage('UK English')}>UK English</button>
+                <button onClick={() => selectLanguage('US English')}>US English</button>
+              </div>
+            )}
           </div>
           <div className="camera-status">
             <span className="camera-dot"></span>
             Camera On
           </div>
         </div>
-      </header>
+      </div>
+
+      {/* Back Button */}
+      <button className="back-button" onClick={() => navigate(-1)}>
+        ← Back
+      </button>
 
       {/* Main Content */}
       <div className="main-content">
-        <button className="back-button" onClick={handleBack}>
-          ← Back
-        </button>
-
-        <div className="frame-container">
-          <div className="frame-box">
-            <img src={personImage} alt="Person" className="person-image" />
-            <div className="countdown-overlay">
-              <h2 className="get-ready-text">Get Ready</h2>
-              <div className="countdown-number">{countdown}</div>
-            </div>
+        <div className="frame-box">
+          <img src={personImage} alt="Side pose reference" className="person-image" />
+          <div className="text-overlay">
+            <div className="get-ready-text">Get Ready</div>
+            <div className="countdown-number">{countdown}</div>
           </div>
         </div>
 
-        <div className="instruction-box">
-          <p className="instruction-text">
-            Hold or place your phone until you fit into this frame
-          </p>
-          <button className="continue-button" onClick={handleContinue}>Continue</button>
+        {/* Instruction Panel */}
+        <div className="instruction-panel">
+          <p>Hold or place your phone until you fit into this frame</p>
+          <button 
+            className="continue-button" 
+            onClick={() => navigate("/Complete")}
+          >
+            Continue
+          </button>
         </div>
       </div>
     </div>
